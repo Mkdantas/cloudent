@@ -1,31 +1,37 @@
+'use client'
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
-const user = {
-  name: 'Tom Cook',
-  email: 'tom@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-}
-const navigation = [
-  { name: 'Painel', href: '#', current: true },
-  { name: 'Dentistas', href: '#', current: false },
-  { name: 'Pacientes', href: '#', current: false },
-  { name: 'Calendário', href: '#', current: false },
-  { name: 'Relatórios', href: '#', current: false },
-]
-const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
-]
+export default function Navbar() {
+  const pathname = usePathname()
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
-}
+  const user = {
+    name: 'Tom Cook',
+    email: 'tom@example.com',
+    imageUrl:
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  }
+  const navigation = [
+    { name: 'Painel', href: '/' },
+    { name: 'Dentistas', href: '/dentists' },
+    { name: 'Pacientes', href: '/pacients' },
+    { name: 'Calendário', href: '/calendar' },
+    { name: 'Relatórios', href: '/reports' },
+  ]
+  const userNavigation = [
+    { name: 'Your Profile', href: '/profile' },
+    { name: 'Settings', href: '/settings' },
+    { name: 'Sign out', href: '/signout' },
+  ]
+  
+  function classNames(...classes: string[]) {
+    return classes.filter(Boolean).join(' ')
+  }
 
-export default function Example() {
+
   return (
     <>
       {/*
@@ -44,26 +50,26 @@ export default function Example() {
                 <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
-                    <a href="#" className="-m-1.5 p-1.5 text-indigo-600 font-semibold text-lg ">
+                    <Link href="/" className="-m-1.5 p-1.5 text-indigo-600 font-semibold text-lg ">
                         Cloudent
-                    </a>
+                    </Link>
                     </div>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
                         {navigation.map((item) => (
-                          <a
+                          <Link
                             key={item.name}
                             href={item.href}
                             className={classNames(
-                              item.current
+                              item.href === pathname 
                                 ? 'text-indigo-600 border-b-indigo-600 border-b-2 rounded-none'
                                 : 'text-gray-900 hover:text-indigo-600 duration-200 hover:border-b-indigo-600 border-b-2 rounded-none border-white',
                               'rounded-md px-3 py-2 text-sm font-medium'
                             )}
-                            aria-current={item.current ? 'page' : undefined}
+                            aria-current={item.href === pathname ? 'page' : undefined}
                           >
                             {item.name}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -101,7 +107,7 @@ export default function Example() {
                             {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
-                                  <a
+                                  <Link
                                     href={item.href}
                                     className={classNames(
                                       active ? 'bg-gray-100' : '',
@@ -109,7 +115,7 @@ export default function Example() {
                                     )}
                                   >
                                     {item.name}
-                                  </a>
+                                  </Link>
                                 )}
                               </Menu.Item>
                             ))}
@@ -141,10 +147,10 @@ export default function Example() {
                       as="a"
                       href={item.href}
                       className={classNames(
-                        item.current ? 'bg-indigo-600 text-white' : 'text-gray-900 hover:bg-indigo-600 hover:text-white',
+                        item.href === pathname ? 'bg-indigo-600 text-white' : 'text-gray-900 hover:bg-indigo-600 hover:text-white',
                         'block rounded-md px-3 py-2 text-base font-medium'
                       )}
-                      aria-current={item.current ? 'page' : undefined}
+                      aria-current={item.href === pathname ? 'page' : undefined}
                     >
                       {item.name}
                     </Disclosure.Button>
@@ -185,15 +191,6 @@ export default function Example() {
             </>
           )}
         </Disclosure>
-
-        <header className="bg-white shadow">
-          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
-          </div>
-        </header>
-        <main>
-          <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">{/* Your content */}</div>
-        </main>
       </div>
     </>
   )
