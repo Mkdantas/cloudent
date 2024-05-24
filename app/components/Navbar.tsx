@@ -42,7 +42,7 @@ export default function Navbar() {
         <body class="h-full">
         ```
       */}
-      <div className="min-h-full">
+      <div className="min-h-full sticky top-0 z-50 shadow">
         <Disclosure as="nav" className="bg-white">
           {({ open }) => (
             <>
