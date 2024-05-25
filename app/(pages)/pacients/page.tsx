@@ -1,3 +1,5 @@
+import ProfileCard from "@/app/components/ProfileCard"
+
 const people = [
   {
     name: 'Leslie Alexander',
@@ -59,32 +61,9 @@ export default function Pacients() {
     <div className="right-0 w-full flex justify-start p-5 px-10">
     <button className="text-white px-5 bg-indigo-500 duration-200 hover:bg-indigo-600 py-2">+ Add new</button>
     </div>
-    <ul role="list" className="divide-y p-10 pt-0 bg-white divide-gray-300">
+    <ul role="list" className=" p-10 pt-0 grid xlg:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-4 w-full bg-white divide-gray-300">
       {people.map((person) => (
-        <li key={person.email} className="flex justify-between gap-x-6 py-5">
-          <div className="flex min-w-0 gap-x-4">
-            <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={person.imageUrl} alt="" />
-            <div className="min-w-0 flex-auto">
-              <p className="text-sm font-semibold leading-6 text-gray-900">{person.name}</p>
-              <p className="mt-1 truncate text-xs leading-5 text-gray-500">{person.email}</p>
-            </div>
-          </div>
-          <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-            <p className="text-sm leading-6 text-gray-900">{person.role}</p>
-            {person.lastSeen ? (
-              <p className="mt-1 text-xs leading-5 text-gray-500">
-                Last seen <time dateTime={person.lastSeenDateTime}>{person.lastSeen}</time>
-              </p>
-            ) : (
-              <div className="mt-1 flex items-center gap-x-1.5">
-                <div className="flex-none rounded-full bg-emerald-500/20 p-1">
-                  <div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                </div>
-                <p className="text-xs leading-5 text-gray-500">Online</p>
-              </div>
-            )}
-          </div>
-        </li>
+        <ProfileCard key={person.email} person={person} />
       ))}
     </ul>
     </div>

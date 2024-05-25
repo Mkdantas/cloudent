@@ -1,92 +1,164 @@
+import ProfileCard from "@/app/components/ProfileCard";
+
 const people = [
   {
-    name: 'Leslie Alexander',
-    email: 'leslie.alexander@example.com',
-    role: 'Co-Founder / CEO',
-    imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    lastSeen: '3h ago',
-    lastSeenDateTime: '2023-01-23T13:23Z',
+    name: "Leslie Alexander",
+    email: "leslie.alexander@example.com",
+    phone: "11 98655-5432",
+    schedule: [
+      { day: "Mon", workingHours: "08:00-17:00" },
+      { day: "Tue", workingHours: "08:00-17:00" },
+      { day: "Wed", workingHours: "08:00-16:00" },
+    ],
+    role: "Dentista",
+    picture:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
   },
   {
-    name: 'Michael Foster',
-    email: 'michael.foster@example.com',
-    role: 'Co-Founder / CTO',
-    imageUrl:
-      'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    lastSeen: '3h ago',
-    lastSeenDateTime: '2023-01-23T13:23Z',
+    name: "John Smith",
+    email: "john.smith@example.com",
+    phone: "11 98555-1234",
+    schedule: [
+      { day: "Mon", workingHours: "09:00-18:00" },
+      { day: "Tue", workingHours: "09:00-18:00" },
+      { day: "Wed", workingHours: "09:00-17:00" },
+    ],
+    role: "Software Engineer",
+    picture:
+      "https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-1.2.1&auto=format&fit=facearea&w=256&h=256&q=80",
   },
   {
-    name: 'Dries Vincent',
-    email: 'dries.vincent@example.com',
-    role: 'Business Relations',
-    imageUrl:
-      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    lastSeen: null,
+    name: "Emily Johnson",
+    email: "emily.johnson@example.com",
+    phone: "11 98222-5678",
+    schedule: [
+      { day: "Mon", workingHours: "10:00-19:00" },
+      { day: "Tue", workingHours: "10:00-19:00" },
+      { day: "Wed", workingHours: "10:00-18:00" },
+    ],
+    role: "Graphic Designer",
+    picture:
+      "https://images.unsplash.com/photo-1566753323558-f4e0952af115?ixlib=rb-1.2.1&auto=format&fit=facearea&w=256&h=256&q=80",
   },
   {
-    name: 'Lindsay Walton',
-    email: 'lindsay.walton@example.com',
-    role: 'Front-end Developer',
-    imageUrl:
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    lastSeen: '3h ago',
-    lastSeenDateTime: '2023-01-23T13:23Z',
+    name: "Michael Brown",
+    email: "michael.brown@example.com",
+    phone: "11 98111-9876",
+    schedule: [
+      { day: "Mon", workingHours: "08:00-17:00" },
+      { day: "Tue", workingHours: "08:00-17:00" },
+      { day: "Wed", workingHours: "08:00-16:00" },
+    ],
+    role: "Marketing Manager",
+    picture:
+      "https://images.unsplash.com/photo-1502764613149-7f1d229e2307?ixlib=rb-1.2.1&auto=format&fit=facearea&w=256&h=256&q=80",
   },
   {
-    name: 'Courtney Henry',
-    email: 'courtney.henry@example.com',
-    role: 'Designer',
-    imageUrl:
-      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    lastSeen: '3h ago',
-    lastSeenDateTime: '2023-01-23T13:23Z',
+    name: "Jessica Davis",
+    email: "jessica.davis@example.com",
+    phone: "11 98777-1234",
+    schedule: [
+      { day: "Mon", workingHours: "07:00-15:00" },
+      { day: "Tue", workingHours: "07:00-15:00" },
+      { day: "Wed", workingHours: "07:00-14:00" }
+    ],
+    role: "Teacher",
+    picture:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=facearea&w=256&h=256&q=80",
   },
   {
-    name: 'Tom Cook',
-    email: 'tom.cook@example.com',
-    role: 'Director of Product',
-    imageUrl:
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    lastSeen: null,
+    name: "David Wilson",
+    email: "david.wilson@example.com",
+    phone: "11 98444-5678",
+    schedule: [
+      { day: "Mon", workingHours: "12:00-21:00" },
+      { day: "Tue", workingHours: "12:00-21:00" },
+      { day: "Wed", workingHours: "12:00-20:00" },
+    ],
+    role: "Chef",
+    picture:
+      "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=facearea&w=256&h=256&q=80",
   },
-]
+  {
+    name: "Sarah Miller",
+    email: "sarah.miller@example.com",
+    phone: "11 98333-1234",
+    schedule: [
+      { day: "Mon", workingHours: "08:00-17:00" },
+      { day: "Tue", workingHours: "08:00-17:00" },
+      { day: "Wed", workingHours: "08:00-16:00" },
+    ],
+    role: "Student",
+    picture:
+      "https://images.unsplash.com/photo-1542345812-d98b5cd6cf98?ixlib=rb-1.2.1&auto=format&fit=facearea&w=256&h=256&q=80",
+  },
+  {
+    name: "James Martinez",
+    email: "james.martinez@example.com",
+    phone: "11 98222-9876",
+    schedule: [
+      { day: "Mon", workingHours: "09:00-18:00" },
+      { day: "Tue", workingHours: "09:00-18:00" },
+      { day: "Wed", workingHours: "09:00-17:00" },
+    ],
+    role: "Lawyer",
+    picture:
+      "https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&auto=format&fit=facearea&w=256&h=256&q=80",
+  },
+  {
+    name: "Laura Taylor",
+    email: "laura.taylor@example.com",
+    phone: "11 98111-5432",
+    schedule: [
+      { day: "Mon", workingHours: "10:00-19:00" },
+      { day: "Tue", workingHours: "10:00-19:00" },
+      { day: "Wed", workingHours: "10:00-18:00" },
+    ],
+    role: "Journalist",
+    picture:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=facearea&w=256&h=256&q=80",
+  },
+  {
+    name: "Daniel Anderson",
+    email: "daniel.anderson@example.com",
+    phone: "11 98777-5678",
+    schedule: [
+      { day: "Mon", workingHours: "08:00-17:00" },
+      { day: "Tue", workingHours: "08:00-17:00" },
+      { day: "Wed", workingHours: "08:00-16:00" },
+    ],
+    role: "Architect",
+    picture:
+      "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&auto=format&fit=facearea&w=256&h=256&q=80",
+  },
+  {
+    name: "Sophia Hernandez",
+    email: "sophia.hernandez@example.com",
+    phone: "11 98444-9876",
+    schedule: [
+      { day: "Mon", workingHours: "09:00-18:00" },
+      { day: "Tue", workingHours: "09:00-18:00" },
+      { day: "Wed", workingHours: "09:00-17:00" },
+    ],
+    role: "Nurse",
+    picture:
+      "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&auto=format&fit=facearea&w=256&h=256&q=80",
+  },
+];
 
 export default function Dentists() {
   return (
     <div className="bg-white">
-    <div className="right-0 w-full flex p-5 px-10 ">
-    <button className="text-white px-5 bg-indigo-500 duration-200 hover:bg-indigo-600 py-2">+ Add new</button>
+      <div className="right-0 w-full flex p-5 px-10 ">
+        <button className="text-white px-5 bg-indigo-500 duration-200 hover:bg-indigo-600 py-2">
+          + Add new
+        </button>
+      </div>
+      <ul role="list" className=" p-10 pt-0 grid xlg:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-4 w-full bg-white divide-gray-300">
+        {people.map((person) => (
+          <ProfileCard key={person.email} person={person} />
+        ))}
+      </ul>
     </div>
-    <ul role="list" className="divide-y p-10 pt-0 bg-white divide-gray-300">
-      {people.map((person) => (
-        <li key={person.email} className="flex justify-between gap-x-6 py-5">
-          <div className="flex min-w-0 gap-x-4">
-            <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={person.imageUrl} alt="" />
-            <div className="min-w-0 flex-auto">
-              <p className="text-sm font-semibold leading-6 text-gray-900">{person.name}</p>
-              <p className="mt-1 truncate text-xs leading-5 text-gray-500">{person.email}</p>
-            </div>
-          </div>
-          <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-            <p className="text-sm leading-6 text-gray-900">{person.role}</p>
-            {person.lastSeen ? (
-              <p className="mt-1 text-xs leading-5 text-gray-500">
-                Last seen <time dateTime={person.lastSeenDateTime}>{person.lastSeen}</time>
-              </p>
-            ) : (
-              <div className="mt-1 flex items-center gap-x-1.5">
-                <div className="flex-none rounded-full bg-emerald-500/20 p-1">
-                  <div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                </div>
-                <p className="text-xs leading-5 text-gray-500">Online</p>
-              </div>
-            )}
-          </div>
-        </li>
-      ))}
-    </ul>
-    </div>
-  )
+  );
 }
