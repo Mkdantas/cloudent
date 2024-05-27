@@ -32,7 +32,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({person}) => {
             </div>
             <div className="flex flex-wrap justify-center align-center">
               {person.schedule && person.schedule.map((sched) => (
-                <p className=" text-xs border-2 border-indigo-600 group-hover:text-white text-indigo-600 h-6 ml-2 p-1 px-2 rounded-full  mt-1 group-hover:border-white">{sched.day} {sched.workingHours}</p>
+                <p key={sched.day} className=" text-xs border-2 border-indigo-400 group-hover:text-white text-indigo-400 h-6 ml-2 p-1 px-2 rounded-full  mt-1 group-hover:border-white">{sched.day} {sched.workingHours}</p>
               ))}
             </div>
           </div>
