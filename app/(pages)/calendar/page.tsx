@@ -8,7 +8,7 @@ import React from "react";
 const Calendar = () => {
   return (
     <div className=" bg-white text-gray-900">
-      <div className="mx-auto py-2 sm:px-6 lg:px-10">
+      <div className="mx-auto py-10 sm:px-6 lg:px-10">
         <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
           nowIndicator={true}
@@ -32,7 +32,8 @@ const Calendar = () => {
         //     },
         //   },
         // }}
-        height={'auto'}
+        height={'85vh'}
+        contentHeight={'100%'}
         slotMinTime={"09:00:00"}
         slotMaxTime={"19:00:00"}
         selectable={true}
