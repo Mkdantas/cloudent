@@ -1,4 +1,5 @@
 import ProfileCard from "@/app/components/ProfileCard";
+import Link from "next/link";
 
 const people = [
   {
@@ -60,7 +61,7 @@ const people = [
     schedule: [
       { day: "Mon", workingHours: "07:00-15:00" },
       { day: "Tue", workingHours: "07:00-15:00" },
-      { day: "Wed", workingHours: "07:00-14:00" }
+      { day: "Wed", workingHours: "07:00-14:00" },
     ],
     role: "Teacher",
     picture:
@@ -150,11 +151,16 @@ export default function Dentists() {
   return (
     <div className="bg-white">
       <div className="right-0 w-full flex p-5 px-10 ">
-        <button className="text-white px-5 bg-indigo-500 duration-200 hover:bg-indigo-600 py-2">
-          + Add new
-        </button>
+        <Link href="/dentists/new">
+          <button className="text-white px-5 bg-indigo-500 duration-200 hover:bg-indigo-600 py-2">
+            + Add new
+          </button>
+        </Link>
       </div>
-      <ul role="list" className=" p-10 pt-0 grid xlg:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-4 w-full bg-white divide-gray-300">
+      <ul
+        role="list"
+        className=" p-10 pt-0 grid xlg:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-4 w-full bg-white divide-gray-300"
+      >
         {people.map((person) => (
           <ProfileCard key={person.email} person={person} />
         ))}
