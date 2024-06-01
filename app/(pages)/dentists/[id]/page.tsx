@@ -1,10 +1,11 @@
 import { PaperClipIcon } from '@heroicons/react/20/solid'
+import Image from 'next/image'
 
 export default function SingleDentist() {
   return (
     <div className="p-20">
       <div className="px-4 flex flex-row sm:px-0">
-      <img
+      <Image
           className="inline-block h-14 w-14 rounded-full mr-10 ring-2 ring-white"
           src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
           alt=""
