@@ -16,7 +16,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <body className={inter.className}>
         <Navbar />
-        <main className="">{children}</main>
+        <main className="overflow-auto">{children}</main>
       </body>
     </html>
   );

@@ -35,7 +35,7 @@ export default function Navbar() {
   return (
     <>
       {pathname !== "/login" && (
-        <div className="min-h-full sticky top-0 z-50 shadow">
+        <div className="min-h-full sticky top-0 z-50 overflow-hidden shadow">
           <Disclosure as="nav" className="bg-white">
             {({ open }) => (
               <>
