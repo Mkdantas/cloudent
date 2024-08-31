@@ -1,13 +1,4 @@
-import Image from "next/image";
-import Navbar from "./components/Navbar";
-import { getData } from "./actions";
-import { DocumentData} from "firebase/firestore";
-
 export default async function Home() {
-  const data = await getData("Dentists")
-
-
-
   return (
     <>
       <div className="bg-white shadow">
