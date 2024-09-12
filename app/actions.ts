@@ -25,3 +25,13 @@ export const addPacient = async (data: pacientProfile) => {
         return err.code
     }
 }
+
+export const addDentist = async (data: dentistProfile) => {
+    try{
+        const result = await addDoc(collection(db, "Dentists"), data)
+
+        return result.id
+    } catch(err:any) {
+        return err.code
+    }
+}
