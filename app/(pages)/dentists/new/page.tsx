@@ -1,15 +1,15 @@
-'use client'
+'use client';
 import { addDentist } from '@/app/actions';
 import {
   PhotoIcon,
   UserCircleIcon,
   ArrowLeftIcon,
+  PlusIcon,
 } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import { FormEvent, useState } from 'react';
 
 export default function DentistForm() {
-  
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -20,14 +20,15 @@ export default function DentistForm() {
   const [region, setRegion] = useState('');
   const [postalCode, setPostalCode] = useState('');
   const [photo, setPhoto] = useState('');
-  const [schedule, setSchedule] = useState([{
-    week_day: 0,
-    from: '',
-    to: ''
-  }])
+  const [schedule, setSchedule] = useState([
+    {
+      week_day: 0,
+      from: '',
+      to: '',
+    },
+  ]);
 
-
-  const sendForm = async (e:FormEvent<HTMLFormElement>) => {
+  const sendForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await addDentist({
       firstName,
@@ -40,8 +41,35 @@ export default function DentistForm() {
       region,
       postalCode,
       photo,
-      schedule
-    })
+      schedule,
+    });
+  };
+
+  const addNewScheduleItem = () => {
+    setSchedule([
+      ...schedule,
+      {
+        week_day: 0,
+        from: '',
+        to: '',
+      },
+    ]);
+  };
+
+  const setScheduleItemValue = (
+    position: number,
+    field: string,
+    value: string
+  ) => {
+    const updatedScheduledItems = schedule.map((schedule, index) => {
+      if (index === position) {
+        return { ...schedule, [field]: value };
+      }
+
+      return schedule;
+    });
+
+    setSchedule(updatedScheduledItems);
   };
 
   return (
@@ -150,7 +178,7 @@ export default function DentistForm() {
                   autoComplete="country-name"
                   className="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                   value={country}
-                  onChange={(e) => setCountry(e.target.value)}                
+                  onChange={(e) => setCountry(e.target.value)}
                 >
                   <option>United States</option>
                   <option>Canada</option>
@@ -247,7 +275,12 @@ export default function DentistForm() {
               >
                 Photo
               </label>
-              <input id="photo" type="file" value={photo} onChange={(e) => setPhoto(e.target.value)}/>
+              <input
+                id="photo"
+                type="file"
+                value={photo}
+                onChange={(e) => setPhoto(e.target.value)}
+              />
               <div className="mt-2 flex items-center gap-x-3">
                 <UserCircleIcon
                   className="h-12 w-12 text-gray-300"
@@ -256,21 +289,51 @@ export default function DentistForm() {
               </div>
             </div>
           </div>
-          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <div className="col-span-full">
-              <select name="schedule_week_day" id="schedule_week_day">
-                <option value="0">Monday</option>
-                <option value="1">Tuesday</option>
-                <option value="2">Wednesday</option>
-                <option value="3">Thursday</option>
-                <option value="4">Friday</option>
-                <option value="5">Saturday</option>
-                <option value="6">Sunday</option>
-              </select>
-
-              <input id="schedule_from" name="schedule_from" type="time"/>
-              <input id="scheudle_to" name="scheudle_to" type="time"/>
+          <div className="mt-10 grid grid-cols-4 gap-x-6 gap-y-8 sm:grid-cols-6">
+            <div className="col-span-full flex items-center text-indigo-400 hover:text-indigo-600 cursor-pointer" onClick={addNewScheduleItem}>
+              <PlusIcon className="h-8 w-8" />
+              Add new
             </div>
+            {schedule &&
+              schedule.map((d: dentistSchedule, i) => (
+                <div className="col-2">
+                  <select
+                    name="schedule_week_day"
+                    value={d.week_day}
+                    id="schedule_week_day"
+                    onChange={(e) =>
+                      setScheduleItemValue(i, 'week_day', e.target.value)
+                    }
+                  >
+                    <option value="0">Monday</option>
+                    <option value="1">Tuesday</option>
+                    <option value="2">Wednesday</option>
+                    <option value="3">Thursday</option>
+                    <option value="4">Friday</option>
+                    <option value="5">Saturday</option>
+                    <option value="6">Sunday</option>
+                  </select>
+
+                  <input
+                    id="schedule_from"
+                    name="schedule_from"
+                    value={d.from}
+                    onChange={(e) =>
+                      setScheduleItemValue(i, 'from', e.target.value)
+                    }
+                    type="time"
+                  />
+                  <input
+                    id="scheudle_to"
+                    name="scheudle_to"
+                    value={d.to}
+                    onChange={(e) =>
+                      setScheduleItemValue(i, 'to', e.target.value)
+                    }
+                    type="time"
+                  />
+                </div>
+              ))}
           </div>
         </div>
       </div>
